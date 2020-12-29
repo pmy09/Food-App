@@ -1,0 +1,95 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/checkout.css">
+</head>
+<body>
+    
+    <div class="check">
+        <div>
+            <div>
+                <div>
+                    <h1>Checkout</h1>
+                    
+                       <form name="checkout" method="#" class="form" action="/" enctype="multipart/form-data">
+                            <div class="name">
+                                <label for="first">First name</label>
+                                <input type="text" name="first-name" id="first">
+                            </div>
+                            <div class="name">
+                                <label for="last">Last name   </label>
+                                <input type="text" name="last-name" id="last">
+                            </div>
+                            
+                            
+                            
+                       <h3 id="order_review_heading">Your order</h3>
+                       
+                           
+                           
+                           <div id="order_review" class="woocommerce-checkout-review-order">
+                               <table class="shop_table woocommerce-checkout-review-order-table">
+                           <thead>
+                               <tr>
+                                   <th class="product-name">Product</th>
+                                   <th class="product-total">Subtotal</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                                <tr class="cart_item">
+                                    <td class="product-name">
+                                        Syinix 32 inch satellite TV&nbsp;						 <strong class="product-quantity">×&nbsp;1</strong>											</td>
+                                    <td class="product-total">
+                                    <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">₵</span>699.00</bdi></span>					</td>
+                                </tr>
+                            </tbody>
+                           <tfoot>
+                       
+                               <tr class="cart-subtotal">
+                                   <th>Subtotal</th>
+                                   <td><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">₵</span>699.00</bdi></span></td>
+                               </tr>
+                                <tr class="order-total">
+                                   <th>Total</th>
+                                   <td><strong><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">₵</span>699.00</bdi></span></strong> <small class="includes_tax">(includes <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">₵</span>20.36</span> 3 % Flat VAT &amp; NHIL )</small></td>
+                               </tr>
+                       
+                               
+                           </tfoot>
+                       </table>
+                       <div id="payment" class="payment">
+                            <ul class="choice">
+                                <li>
+                                    <input id="payment_method_cod" type="radio" class="input-radio" name="payment_method" value="cod" checked="checked" data-order_button_text="">
+                                    <label for="payment_method_cod">Cash on delivery</label>
+                                   <p>Pay with cash upon delivery.</p>
+                               </li>
+                                <li>
+                                    <input id="payment_method_momo" type="radio" class="input-radio" name="payment_method" value="theteller" data-order_button_text="">
+                                    <label for="payment_method_cod">Mobile Money<div class="momo"><img src="/images/atmoney.png"><img src="/images/momo.png"><img src="/images/vcash.png"></div></label>
+                                </li>
+                                <li>
+                                    <div class="coupon"><input id="payment_method_cod" type="radio" class="input-radio" name="payment_method" value="cod" checked="checked" data-order_button_text="">
+                                        Have a coupon? <input type="text" name="coupon" id="coupon">
+                                        <button type="#" class="#" name="#" value="#" disabled>Apply coupon</button>
+                                    </div>
+                                </li>
+                           
+                       </div>
+                       
+                               </ul>
+                               <div class="form-row place-order">
+                               <button type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="Place order" data-value="Place order">Place order</button>
+                               
+                               
+                       </div>
+                           </div>
+                       
+                           
+                       </form>
+                       
+                       </div>
+                    </div>
+                </div><!-- row end here -->
+            </div><!-- container end here -->
+        </div>
+        
+</body>
