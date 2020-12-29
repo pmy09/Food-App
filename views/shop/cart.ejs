@@ -1,0 +1,53 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/cart.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        <main>
+            <% if (products.length > 0) { %>
+                <ul class="cart__item-list">
+                    <% products.forEach(p => { %>
+                        <li class="cart__item">
+                            <img src="<%= p.productId.imageUrl %>">
+                            <h1><%= p.productId.title %></h1> 
+                            <h2>Quantity: <%= p.quantity %></h2>
+                            <input type="text" name="text" placeholder="Add note here">
+                            <form action="/cart-delete-item" method="POST">
+                                <input type="hidden" value="<%= p.productId._id %>" name="productId">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <button class="btn danger" type="submit"><i class="fa fa-trash"></i></button>
+                            </form>
+                        </li>
+                    <% }) %>
+                </ul>
+                <hr>
+                <div class="centered">
+                    <form action="/create-order" method="POST">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button type="submit" class="btn">Order Now!</button>
+                    </form>
+                </div>
+                
+            <% } else { %>
+                <h1>No Products in Cart!</h1>
+            <% } %>
+        </main>
+        <footer class="footer1">
+            <div class="">© 2020 Copyright:
+                <a class="" href="/"> AmaliEats</a>
+            </div>
+            <hr>
+            <div>
+                <i style="font-size:24px" class="fa">&#xf230;</i>
+                <i style="font-size:24px" class="fa">&#xf0d4;</i>
+                <i style='font-size:24px' class='fa'>&#xf16d;</i>
+                <i style="font-size:24px" class="fa">&#xf099;</i>
+                <i style="font-size:24px" class="fa">&#xf232;</i>
+            </div>
+            
+        </footer>
+        <script src="/js/main.js"></script>
+        </body>
+        
+        </html>
