@@ -1,0 +1,66 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+
+<body>
+   <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <% if (errorMessage) { %>
+            <div class="user-message user-message--error"><%= errorMessage %></div>
+        <% } %>
+        
+        <form class="login-form" action="/signup" method="POST">
+            <div class="form-control">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username">
+            </div>
+            <div class="form-control">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+            </div>
+            <div class="form-control">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password">
+            </div>
+            <div class="form-control">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" name="confirmPassword" id="confirmPassword">
+            </div>
+            <div class="form-control">
+                <label for="department">Department</label>
+                <input type="text" name="department" id="department">
+            </div>
+            <div class="form-control">
+                <select name="accType" id="accType">
+                    <option value="S">Account Type</option>
+                    <option value="S">Trainee</option>
+                    <option value="M">Staff</option>
+                </select>
+            </div>
+            
+            
+            
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button class="btn" type="submit">Signup</button>
+        </form>
+    </main>
+    <footer class="footer1">
+        <div class="">© 2020 Copyright:
+            <a class="" href="/"> AmaliEats</a>
+        </div>
+        <hr>
+        <div>
+            <i style="font-size:24px" class="fa">&#xf230;</i>
+            <i style="font-size:24px" class="fa">&#xf0d4;</i>
+            <i style='font-size:24px' class='fa'>&#xf16d;</i>
+            <i style="font-size:24px" class="fa">&#xf099;</i>
+            <i style="font-size:24px" class="fa">&#xf232;</i>
+        </div>
+        
+    </footer>
+    <script src="/js/main.js"></script>
+    </body>
+    
+    </html>
