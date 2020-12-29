@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/css/checkout.css">
 </head>
 <body>
-    
+    <%- include('../includes/navigation.ejs') %>
     <div class="check">
         <div>
             <div>
@@ -21,40 +21,12 @@
                             
                             
                             
-                       <h3 id="order_review_heading">Your order</h3>
+                       <h3 id="order_review_heading">Choose Payment Method</h3>
                        
                            
                            
                            <div id="order_review" class="woocommerce-checkout-review-order">
-                               <table class="shop_table woocommerce-checkout-review-order-table">
-                           <thead>
-                               <tr>
-                                   <th class="product-name">Product</th>
-                                   <th class="product-total">Subtotal</th>
-                               </tr>
-                           </thead>
-                           <tbody>
-                                <tr class="cart_item">
-                                    <td class="product-name">
-                                        Syinix 32 inch satellite TV&nbsp;						 <strong class="product-quantity">×&nbsp;1</strong>											</td>
-                                    <td class="product-total">
-                                    <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">₵</span>699.00</bdi></span>					</td>
-                                </tr>
-                            </tbody>
-                           <tfoot>
-                       
-                               <tr class="cart-subtotal">
-                                   <th>Subtotal</th>
-                                   <td><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">₵</span>699.00</bdi></span></td>
-                               </tr>
-                                <tr class="order-total">
-                                   <th>Total</th>
-                                   <td><strong><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">₵</span>699.00</bdi></span></strong> <small class="includes_tax">(includes <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">₵</span>20.36</span> 3 % Flat VAT &amp; NHIL )</small></td>
-                               </tr>
-                       
                                
-                           </tfoot>
-                       </table>
                        <div id="payment" class="payment">
                             <ul class="choice">
                                 <li>
@@ -92,4 +64,21 @@
             </div><!-- container end here -->
         </div>
         
-</body>
+        <footer class="footer1">
+            <div class="">© 2020 Copyright:
+                <a class="" href="/"> AmaliEats</a>
+            </div>
+            <hr>
+            <div>
+                <i style="font-size:24px" class="fa">&#xf230;</i>
+                <i style="font-size:24px" class="fa">&#xf0d4;</i>
+                <i style='font-size:24px' class='fa'>&#xf16d;</i>
+                <i style="font-size:24px" class="fa">&#xf099;</i>
+                <i style="font-size:24px" class="fa">&#xf232;</i>
+            </div>
+            
+        </footer>
+        <script src="/js/main.js"></script>
+        </body>
+        
+        </html>
