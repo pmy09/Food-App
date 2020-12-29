@@ -1,0 +1,44 @@
+.check {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    border: 3px dashed black;
+    height: fit-content;
+    width: fit-content;
+    padding: 10px;
+    position: absolute;
+    top: 12%;
+    left: 30%;
+    
+}
+
+.name {
+    margin-bottom: 10px;
+}
+
+.momo {
+    display: flex;
+    /* justify-content: center; */
+    height: 40px;
+    /* align-items: center; */
+    /* vertical-align: middle; */
+    
+}
+
+img {
+    width: 50px;
+}
+
+label {
+    display: flexbox;
+}
+
+.coupon {
+    margin-top: 15px;
+}
+
+ul {
+    list-style: none;
+}
