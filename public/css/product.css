@@ -38,7 +38,7 @@
 
 @media (max-width: 768px) {
     .carousel-inner {
-        height: 250px;
+        height: 200px;
         width: vw;
     }
 }
