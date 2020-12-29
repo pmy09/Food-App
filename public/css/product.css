@@ -1,0 +1,54 @@
+.product-form {
+    width: 20rem;
+    max-width: 90%;
+    margin: auto;
+    display: block;
+}
+
+.product-item {
+    width: 20rem;
+    max-width: 95%;
+    margin: 1rem;
+}
+
+.product__title {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.product__price {
+    text-align: center;
+    color: #4d4d4d;
+    margin-bottom: 0.5rem;
+}
+
+.product__description {
+    text-align: center;
+}
+
+.carousel-inner {
+    height: 400px;
+    width: vw;
+}
+
+#carousel {
+    z-index: 1;
+    width: vw;
+}
+
+@media (max-width: 768px) {
+    .carousel-inner {
+        height: 250px;
+        width: vw;
+    }
+}
+
+span {
+    position: absolute;
+    z-index: 2;
+    color: white;
+    font-size: xx-large;
+    font-style: italic;
+    top: 50%;
+    left: 25%;
+}
