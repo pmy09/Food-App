@@ -1,0 +1,32 @@
+.login-form {
+  width: 20rem;
+  max-width: 90%;
+  margin: auto;
+  display: block;
+  padding: 15px;
+  background-color: #f2f2f2;
+}
+
+.login-form1 {
+  /* width: 20rem; */
+  max-width: 90%;
+  max-height: max-content;
+  /* margin: auto; */
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px;
+  vertical-align: 20px;
+}
+
+.col a {
+  margin: 0.5rem;
+}
