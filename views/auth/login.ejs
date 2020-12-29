@@ -1,0 +1,75 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+
+<body>
+   <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <% if (errorMessage) { %>
+            <div class="user-message user-message--error"><%= errorMessage %></div>
+        <% } %>
+        <div class="container">
+          <form class="login-form1" action="/login" method="POST">
+              <div class="row">
+                <h2 style="text-align:center">Login with Social Media or Email</h2>
+                <div class="vl">
+                  <span class="vl-innertext">or</span>
+                </div>
+          
+                <div class="col">
+                  <a href="#" class="fb btn">
+                    <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+                  </a>
+                  <a href="#" class="twitter btn">
+                    <i class="fa fa-twitter fa-fw"></i> Login with Twitter
+                  </a>
+                  <a href="#" class="google btn">
+                    <i class="fa fa-google fa-fw"></i> Login with Google+
+                  </a>
+                </div>
+          
+                <div class="col">
+                  <div class="hide-md-lg">
+                    <p>Or sign in manually:</p>
+                  </div>
+          
+                  <input type="email" name="email" placeholder="Email" required>
+                  <input type="password" name="password" placeholder="Password" required>
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button class="btn" type="submit">Login</button>
+                </div>
+          
+              </div>
+            </form>
+          </div>
+          
+          <div class="bottom-container">
+            <div class="row">
+              <div class="col">
+                <a href="/signup" style="color:black" class="btn">Sign up</a>
+              </div>
+              <div class="col">
+                <a href="#" style="color:black" class="btn">Forgot password?</a>
+              </div>
+            </div>
+          </div>
+    </main>
+    <footer class="footer1">
+        <div class="">© 2020 Copyright:
+            <a class="" href="/"> AmaliEats</a>
+        </div>
+        <hr>
+        <div>
+            <i style="font-size:24px" class="fa">&#xf230;</i>
+            <i style="font-size:24px" class="fa">&#xf0d4;</i>
+            <i style='font-size:24px' class='fa'>&#xf16d;</i>
+            <i style="font-size:24px" class="fa">&#xf099;</i>
+            <i style="font-size:24px" class="fa">&#xf232;</i>
+        </div>
+        
+    </footer>
+    <script src="/js/main.js"></script>
+    </body>
+    
+    </html>
