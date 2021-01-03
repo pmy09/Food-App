@@ -1,5 +1,6 @@
 const Product = require('../models/product');
 const Order = require('../models/order');
+const User = require('../models/user');
 
 exports.getProducts = (req, res, next) => {
   Product.find()
@@ -66,7 +67,7 @@ exports.postCart = (req, res, next) => {
     })
     .then(result => {
       console.log(result);
-      res.redirect('/cart');
+      res.redirect('/products');
     });
 };
 
@@ -91,9 +92,11 @@ exports.postOrder = (req, res, next) => {
       const order = new Order({
         user: {
           email: req.user.email,
+          username: req.user.username,
           userId: req.user
         },
-        products: products
+        products: products,
+        date: new Date()
       });
       return order.save();
     })
@@ -117,9 +120,11 @@ exports.getOrders = (req, res, next) => {
         pageTitle: 'Your Orders',
         orders: orders
       }),
+      // res.locals.user = user
       res.render('shop/checkout', {
         path: '/checkout',
         pageTitle: 'Checkout',
+        // user : user,
         orders: orders
       })
     })
@@ -127,13 +132,40 @@ exports.getOrders = (req, res, next) => {
 };
 
 
-exports.getToday = (req, res, next) => {
-  res.render('shop/today', {
-    path: '/today',
-    pageTitle: "Today's Menu",
+exports.delUser =  (req, res) => {
+
+  const uId = req.params.userId
+  
+  User.findById(uId).deleteOne()
+  .then(user => {
+
+    res.render('admin/manager', {
+      user : user,
+      path: '/manager',
+      pageTitle: "Manager"
+    })
 
   })
+  
+};
+
+exports.delOrder = (req, res) => {
+
 }
+
+exports.getToday = (req, res, next) => {
+  Product.find()
+    .then(products => {
+      res.render('shop/today', {
+        prods: products,
+        pageTitle: 'Today',
+        path: '/today'
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
 
 exports.getCheckout = (req, res, next) => {
   res.render('shop/checkout', {
