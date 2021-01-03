@@ -279,85 +279,75 @@
                                     <div class="card">
                                         <div class="card-header">
                                             <h5>Users</h5>
-                                            
+                                        <h1><%= user.length %> </h1>    
+                                        </div>
+                                        <div class="allusers">
+
+        
+                                            <div> <h3>Admin </h3></div>
+                                            <div> <h3>Staff </h3></div>
+                                            <div> <h3> Trainee </h3></div>
+                                            <div> <h3> Managers </h3></div>
+                                            <div> <h3>Total </h3></div>
+                                    
+                                            <div> <h3> <%= adminCounter %> </h3></div>
+                                            <div> <h3> <%= staffCounter %>  </h3></div>
+                                            <div> <h3> <%= traineeCounter %>  </h3></div>
+                                            <div> <h3> <%= managerCounter %>   </h3></div>
+                                            <div> <h3> <%= user.length %> </h3></div>
                                         </div>
                                         
                                         <div class="card-block table-border-style">
                                             <div class="table-responsive">
+                                                <% if (user.length > 0) { %>
                                                 <table class="table table-hover">
                                                     <thead>
                                                         <tr>
-                                                            <th>#</th>
+                                                            
+                                                            <th>ID</th>
                                                             <th>Username</th>
+                                                            <th>Role</th>
                                                             <th>Email</th>
-                                                            <th>Account Type</th>
+                                                            <th></th>
+                                                            <th></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <th scope="row">1</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">2</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">3</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">4</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">5</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">6</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">7</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">8</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">9</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">10</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
+                                                        <% for (var people = 0; people < user.length; people++) { %>
+                                                            <tr>
+                                    
+                                                                <td><%= user[people]._id %></td>
+                                                                <td><%= user[people].username %></td>
+                                                                <td><%= user[people].role %> </td>
+                                                                <td><%= user[people].email %></td>
+                                                                <% if(user[people].disabled === true) { %> 
+                                                                    <!-- <td><a href="/edit-user/<%= user[people]._id %>?edit=true" class="btn">Approve</a></td> -->
+                                                                <td><form action="/edit-user/<%= user[people]._id %>" method="GET">
+                                                                    <input type="hidden" value="<%= user[people]._id %>" name="userId">
+                                                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                                                    <button>Approve</button></form></td>
+                                                                <td><form action="/deluser/<%= user[people]._id %>" method="GET"> <button id="<%= user[people]._id %>" type="submit" class="remove">Remove</button></form></td>
+                                                                <!-- <td><a href="/deluser/<%= user[people]._id %>">Remove1</a></td> -->
+                                                                
+                                                                <% } else { %>
+                                                                    <td><p>Approved</p></td>
+                                                                    <td><form action="/deluser/<%= user[people]._id %>" method="GET"> 
+                                                                        <button id="<%= user[people]._id %>" type="submit" class="remove">Remove</button>
+                                                                    </form></td>
+                                                                    <% } %>
+                                                            </tr>
+                                                            <% } %>  
+                                                            
+                                                            
+
+
                                                     </tbody>
                                                 </table>
+                                                <% } %> 
+                                                
                                             </div>
                                         </div>
+                                        
                                     </div>
                                     
                                 </div>
@@ -393,6 +383,12 @@
 <script src="/assets/js/pcoded.min.js"></script>
 <script src="/assets/js/demo-12.js"></script>
 <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
 </body>
 
 </html>
