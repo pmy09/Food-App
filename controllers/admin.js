@@ -1,12 +1,18 @@
 const Product = require('../models/product');
+const Order = require('../models/order');
+const User = require('../models/user');
 
 exports.getAddProduct = (req, res, next) => {
-  res.render('admin/edit-product', {
+  Product.find()
+    .then(products => {
+      
+  res.render('admin/add-product', {
+    prods: products,
     pageTitle: 'Add Product',
     path: '/admin/add-product',
     editing: false
   });
-};
+})};
 
 exports.postAddProduct = (req, res, next) => {
   const title = req.body.title;
@@ -106,4 +112,20 @@ exports.getManager = (req, res, next) => {
     path: '/manager',
     pageTitle: "Manager"
   })
+};
+
+exports.getUsers = (req, res, next) => {
+  User.find({})
+  .then(user => {
+    console.log(user);
+    res.locals.user = user;
+    res.render('admin/crew', {
+      user: user,
+      pageTitle: 'Users',
+      path: '/users'
+    });
+  })
+  .catch(err => {
+    console.log(err);
+  });
 };
