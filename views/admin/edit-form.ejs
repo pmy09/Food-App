@@ -1,0 +1,38 @@
+<main>
+    <form class="login-form" action="/auth/<% if (editing) { %>edit-user<% } else { %>newuser<% } %>" method="POST">
+        <div class="form-control">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" value="<% if (editing) { %><%= user.username %><% } %>" required>
+        </div>
+        <div class="form-control">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required value="<% if (editing) { %><%= user.email %><% } %>">
+        </div>
+        <div class="form-control">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" value="<% if (editing) { %><%= user.password %><% } %>">
+        </div>
+        <!-- <div class="form-control">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" name="confirmPassword" id="confirmPassword">
+        </div> -->
+        <!-- <div class="form-control">
+            <label for="department">Department</label>
+            <input type="text" name="department" id="department">
+        </div> -->
+        <div class="form-control">
+            <select name="role" id="role">
+                <option value="#">Account Type</option>
+                <option value="trainee">Trainee</option>
+                <option value="staff">Staff</option>
+                <option value="manager">Restaurant Manager</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
+                        
+                        
+                        
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button class="btn" type="submit">Create</button>
+                    </form>
+</main>
