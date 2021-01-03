@@ -14,11 +14,11 @@
         <form class="login-form" action="/signup" method="POST">
             <div class="form-control">
                 <label for="username">Username</label>
-                <input type="text" name="username" id="username">
+                <input type="text" name="username" id="username" value="<%= typeof name != 'undefined' ? name : '' %>" required>
             </div>
             <div class="form-control">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" required value="<%= typeof email != 'undefined' ? email : '' %>">
             </div>
             <div class="form-control">
                 <label for="password">Password</label>
@@ -33,10 +33,10 @@
                 <input type="text" name="department" id="department">
             </div>
             <div class="form-control">
-                <select name="accType" id="accType">
-                    <option value="S">Account Type</option>
-                    <option value="S">Trainee</option>
-                    <option value="M">Staff</option>
+                <select name="role" id="role">
+                    <option value="#">Account Type</option>
+                    <option value="trainee">Trainee</option>
+                    <option value="staff">Staff</option>
                 </select>
             </div>
             
