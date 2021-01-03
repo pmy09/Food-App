@@ -14,12 +14,25 @@ const orderSchema = new Schema({
       type: String,
       required: true
     },
+    username: {
+      type: String,
+      required: true,
+      ref: 'User'
+    },
     userId: {
       type: Schema.Types.ObjectId,
       required: true,
       ref: 'User'
     }
-  }
+  },
+  date: {
+    type: String,
+    required: true
+  },
+  // payment: {
+  //   type: String,
+  //   required: true
+  // }
 });
 
 module.exports = mongoose.model('Order', orderSchema);
