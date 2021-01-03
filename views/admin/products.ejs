@@ -5,44 +5,61 @@
     <body>
         <%- include('./man.ejs') %>
 
-            <main>
+        <main>
+            <div class="manprod">
                 <% if (prods.length > 0) { %>
-                    <div class="grid">
-                        <% for (let product of prods) { %>
-                            <article class="card product-item">
-                                <header class="card__header">
-                                    <h1 class="product__title">
-                                        <%= product.title %>
-                                    </h1>
-                                </header>
-                                <div class="card__image">
-                                    <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
-                                </div>
-                                <div class="card__content">
-                                    <h2 class="product__price">GHC
-                                        <%= product.price %>
-                                    </h2>
-                                    <p class="product__description">
-                                        <%= product.description %>
-                                    </p>
-                                </div>
-                                <div class="card__actions">
-                                    <a href="/admin/edit-product/<%= product._id %>?edit=true" class="btn">Edit</a>
-                                    <form action="/admin/delete-product" method="POST">
-                                        <input type="hidden" value="<%= product._id %>" name="productId">
-                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                        <button class="btn" type="submit"><i class="fa fa-trash"></i>Delete</button>
-                                    </form>
-
-                                </div>
-                            </article>
-                            <% } %>
-                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                
+                                <th>Price</th>
+                                <th>Description</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (let product of prods) { %>
+                                <tr>
+                                    <td><%= product.title %></td>
+                                    
+                                    <td>GHC <%= product.price %></td>
+                                    <td><%= product.description %></td>
+                                    <td> <a href="/admin/edit-product/<%= product._id %>?edit=true" class="btn">Edit</a></td>
+                                    <td>
+                                        <form action="/admin/delete-product" method="POST">
+                                            <input type="hidden" value="<%= product._id %>" name="productId">
+                                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                            <button class="btn" type="submit">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                        
+                    </table>
                     <% } else { %>
                         <h1>No Products Found!</h1>
-                        <% } %>
-            </main>
-            <footer class="footer">
+                    <% } %>
+                    
+                    <button id="kc_fab_main_btn">+</button>
+                    
+                    <div id="myModal" class="modal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <span class="close">&times;</span>
+                                <h2>Add Product</h2>
+                            </div>
+                            <div class="modal-body">
+                                <%- include('./add-form.ejs') %>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            
+        </main>
+            <footer class="footer1">
                 All rights reserved.
             </footer>
             <script src="/js/main.js"></script>
