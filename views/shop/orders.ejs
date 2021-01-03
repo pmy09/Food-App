@@ -8,24 +8,49 @@
             <% if (orders.length <= 0) { %>
                 <h1>Nothing there!</h1>
             <% } else { %>
-                <ul class="orders">
-                    <% orders.forEach(order => { %>
-                        <li class="orders__item">
-                            <h1>Order - # <%= order._id %></h1>
-                            <ul class="orders__products">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Date</th>
+                            <th>Order ID</th>
+                            <th>Meal</th>
+                            <th>Quantity</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% orders.forEach(order => { %>
+                            <tr>
+                                <td><%= order.user.username %></td>
+                                <td><%= order.date %></td>
+                                <td># <%= order._id %></td>
                                 <% order.products.forEach(p => { %>
-                                    <li class="orders__products-item"><%= p.product.title %> (<%= p.quantity %>)</li>
+                                <td><%= p.product.title %></td>
+                                <td><%= p.quantity %></td>
+                                <td>
                                     <div>
                                         <input type="hidden" value="<%= p.product._id %>" name="productId">
                                         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                         <button class="btn" type="#">Complete Order</button>
                                     </div>
-                                <% }); %>
-                            </ul>
-                        </li>
-                    <% }); %>
-                </ul>
-            <% } %>
+                                </td>
+                                <td>
+                                    <div>
+                                        <input type="hidden" value="<%= p.product._id %>" name="productId">
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <button class="btn" type="#">Delete Order</button>
+                                    </div>
+                                </td>
+                                <% }) %>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+                <% } %>
+                    
+                       
         </main>
         <footer class="footer1">
             All rights reserved.
