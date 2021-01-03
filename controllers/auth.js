@@ -1,5 +1,7 @@
 const bcrypt = require('bcryptjs');
 
+const Product = require('../models/product');
+const Order = require('../models/order');
 const User = require('../models/user');
 
 exports.getLogin = (req, res, next) => {
@@ -30,41 +32,66 @@ exports.getSignup = (req, res, next) => {
   });
 };
 
-// exports.postLogin = (req, res, next) => {
-//   const email = req.body.email;
-//   const password = req.body.password;
-//   User.findOne({ email: email })
-//     .then(user => {
-//       if (!user) {
-//         req.flash('error', 'Invalid email or password.');
-//         return res.redirect('/login');
-//       }
-//       bcrypt
-//         .compare(password, user.password)
-//         .then(doMatch => {
-//           if (doMatch) {
-//             req.session.isLoggedIn = true;
-//             req.session.user = user;
-//             return req.session.save(err => {
-//               console.log(err);
-//               res.redirect('/');
-//             });
-//           }
-//           req.flash('error', 'Invalid email or password.');
-//           res.redirect('/login');
-//         })
-//         .catch(err => {
-//           console.log(err);
-//           res.redirect('/login');
-//         });
-//     })
-//     .catch(err => console.log(err));
-// };
+exports.postLogin = (req, res, next) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  const role = req.body.role;
+  User.findOne({ email: email })
+    .then(user => {
+      if (!user) {
+        req.flash('error', 'Invalid email or password.');
+        return res.redirect('/login');
+      }
+      bcrypt
+        .compare(password, user.password)
+        .then(doMatch => {
+          if (doMatch) {
+            if (user.disabled === true){
+              req.flash('error', 'Unauthorized user!');
+              return res.redirect('/login');
+            } else {
+              if (user.role === 'manager'){
+                req.session.isLoggedIn = true;
+              req.session.user = user;
+              return req.session.save(err => {
+                console.log(err);
+                res.redirect('/admin/products');
+              }
+              )}
+              if (user.role === 'admin'){
+                req.session.isLoggedIn = true;
+              req.session.user = user;
+              return req.session.save(err => {
+                console.log(err);
+                res.redirect('/admin/manager');
+              }
+              )} else {
+              req.session.isLoggedIn = true;
+              req.session.user = user;
+              return req.session.save(err => {
+                console.log(err);
+                res.redirect('/');
+              });
+            }
+            
+          }}
+          req.flash('error', 'Invalid email or password.');
+          res.redirect('/login');
+        })
+        .catch(err => {
+          console.log(err);
+          res.redirect('/login');
+        });
+    })
+    .catch(err => console.log(err));
+};
 
 exports.postSignup = (req, res, next) => {
+  const username = req.body.username;
   const email = req.body.email;
   const password = req.body.password;
   const confirmPassword = req.body.confirmPassword;
+  const role = req.body.role;
   User.findOne({ email: email })
     .then(userDoc => {
       if (userDoc) {
@@ -75,8 +102,11 @@ exports.postSignup = (req, res, next) => {
         .hash(password, 12)
         .then(hashedPassword => {
           const user = new User({
+            username: username,
             email: email,
             password: hashedPassword,
+            role: role,
+            disabled: true,
             cart: { items: [] }
           });
           return user.save();
@@ -97,57 +127,60 @@ exports.postLogout = (req, res, next) => {
   });
 };
 
-exports.postLogin = (req, res, next) => {
-  const email = req.body.email;
-  const password = req.body.password;
-  User.findOne({ email: email })
-    .then(user => {
-      if (!user) {
-        req.flash('error', 'Invalid email or password.');
-        return res.redirect('/login');
-      }
-      bcrypt
-        .compare(password, user.password)
-        .then(doMatch => {
-          if (doMatch) {
-            if (password === 'demo09'){
-              req.session.isLoggedIn = true;
-            req.session.user = user;
-            return req.session.save(err => {
-              console.log(err);
-              res.redirect('/admin/products');
-            }
-            )}
-            if (password === 'admin09'){
-              req.session.isLoggedIn = true;
-            req.session.user = user;
-            return req.session.save(err => {
-              console.log(err);
-              res.redirect('/admin/manager');
-            }
-            )} else {
-            req.session.isLoggedIn = true;
-            req.session.user = user;
-            return req.session.save(err => {
-              console.log(err);
-              res.redirect('/');
-            });
-          }}
-          req.flash('error', 'Invalid email or password.');
-          res.redirect('/login');
-        })
-        .catch(err => {
-          console.log(err);
-          res.redirect('/login');
-        });
-    })
-    .catch(err => console.log(err));
-};
+// exports.postLogin = (req, res, next) => {
+//   const email = req.body.email;
+//   const password = req.body.password;
+//   const role = req.body.role;
+//   User.findOne({ email: email })
+//     .then(user => {
+//       if (!user) {
+//         req.flash('error', 'Invalid email or password.');
+//         return res.redirect('/login');
+//       }
+//       bcrypt
+//         .compare(password, user.password)
+//         .then(doMatch => {
+//           if (doMatch) {
+//             if (user.role === 'manager'){
+//               req.session.isLoggedIn = true;
+//             req.session.user = user;
+//             return req.session.save(err => {
+//               console.log(err);
+//               res.redirect('/admin/products');
+//             }
+//             )}
+//             if (user.role === 'admin'){
+//               req.session.isLoggedIn = true;
+//             req.session.user = user;
+//             return req.session.save(err => {
+//               console.log(err);
+//               res.redirect('/admin/manager');
+//             }
+//             )} else {
+//             req.session.isLoggedIn = true;
+//             req.session.user = user;
+//             return req.session.save(err => {
+//               console.log(err);
+//               res.redirect('/');
+//             });
+//           }}
+//           req.flash('error', 'Invalid email or password.');
+//           res.redirect('/login');
+//         })
+//         .catch(err => {
+//           console.log(err);
+//           res.redirect('/login');
+//         });
+//     })
+//     .catch(err => console.log(err));
+// };
 
 exports.postNewUser = (req, res, next) => {
+  const username = req.body.username;
   const email = req.body.email;
   const password = req.body.password;
   const confirmPassword = req.body.confirmPassword;
+  const role = req.body.role;
   User.findOne({ email: email })
     .then(userDoc => {
       if (userDoc) {
@@ -158,8 +191,11 @@ exports.postNewUser = (req, res, next) => {
         .hash(password, 12)
         .then(hashedPassword => {
           const user = new User({
+            username: username,
             email: email,
             password: hashedPassword,
+            role: role,
+            disabled: false,
             cart: { items: [] }
           });
           return user.save();
@@ -174,15 +210,17 @@ exports.postNewUser = (req, res, next) => {
 };
 
 // exports.getUsers = (req, res, next) => {
-//   User.find({}, function(err, Users){
-//     if (err)
-//         return done(err);
-
-//     if (Users) {
-//       console.log("Users count : " + user.length);
-//       res.render('admin/crew', {
-//         users: Users
-//       });
-//     };
+//   User.find({})
+//   .then(user => {
+//     console.log(user);
+//     res.locals.user = user;
+//     res.render('admin/crew', {
+//       user: user,
+//       pageTitle: 'Users',
+//       path: '/users'
+//     });
+//   })
+//   .catch(err => {
+//     console.log(err);
 //   });
 // };
