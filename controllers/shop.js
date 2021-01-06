@@ -1,6 +1,8 @@
 const Product = require('../models/product');
 const Order = require('../models/order');
 const User = require('../models/user');
+const Coupon = require('../models/coupon')
+const bcrypt = require('bcryptjs');
 
 exports.getProducts = (req, res, next) => {
   Product.find()
@@ -96,7 +98,8 @@ exports.postOrder = (req, res, next) => {
           userId: req.user
         },
         products: products,
-        date: new Date()
+        date: new Date(),
+        delivered: false
       });
       return order.save();
     })
@@ -119,16 +122,17 @@ exports.getOrders = (req, res, next) => {
         path: '/orders',
         pageTitle: 'Your Orders',
         orders: orders
-      }),
-      // res.locals.user = user
-      res.render('shop/checkout', {
-        path: '/checkout',
-        pageTitle: 'Checkout',
-        // user : user,
-        orders: orders
       })
-    })
+      // res.locals.user = user
+    //   res.render('shop/checkout', {
+    //     path: '/checkout',
+    //     pageTitle: 'Checkout',
+    //     // user : user,
+    //     orders: orders
+    //   })
+    // })
     .catch(err => console.log(err));
+    })
 };
 
 
@@ -139,18 +143,36 @@ exports.delUser =  (req, res) => {
   User.findById(uId).deleteOne()
   .then(user => {
 
-    res.render('admin/manager', {
-      user : user,
-      path: '/manager',
-      pageTitle: "Manager"
+    res.render('shop/orders', {
+      path: '/orders',
+      pageTitle: 'Your Orders',
+      orders: orders
     })
 
   })
   
 };
 
-exports.delOrder = (req, res) => {
+exports.getCompleteOrders = (req, res) => {
+  const oId = req.params.orderId
+  console.log(oId);
+  Order.findByIdAndUpdate(oId, {delivered: true})
+  .then(orders => {
+    res.redirect('/orders')
+  })
+  
+  // Order.findByIdAndUpdate(oId, {disabled: false})
+  .catch(err => console.log(err));
+}
 
+
+exports.getDelOrders = (req, res) => {
+  const oId = req.params.orderId
+  Order.findById(oId).deleteOne()
+  .then(orders => {
+    res.redirect('/orders')
+
+  })
 }
 
 exports.getToday = (req, res, next) => {
@@ -174,3 +196,34 @@ exports.getCheckout = (req, res, next) => {
 
   })
 }
+
+exports.getValidate = (req, res, next) => {
+  const coupon = req.body.coupon;
+  console.log(coupon)
+  Coupon.findOne({ code: coupon})
+  .then(coupon => {
+    if (coupon === undefined) {
+      req.flash('error', 'Invalid coupon.');
+      return res.redirect('/checkout');
+  }
+  // bcrypt
+  //       .compare(coupon, coupon.code)
+  //       .then(doMatch => {
+  //         if (doMatch) {
+  //           req.flash('error', 'Coupon Validated.');
+  //     return res.redirect('/');
+  //           };
+  //           req.flash('error', 'Invalid coupon.');
+  //           return res.redirect('/checkout');
+  //         })
+  //       .catch(err => {
+  //         console.log(err);
+  //         res.redirect('/checkout');
+  //       });
+    })
+    .catch(err => console.log(err));
+};
+
+// exports.getValidate = (req, res, next) => {
+//   req.flash('error', 'Coupon Validated.');
+// };
