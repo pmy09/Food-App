@@ -31,3 +31,24 @@
     color: #00695c;
     width: 50%;
 }
+
+tr, td {
+  padding: 10px 30px;
+  text-align: center;
+  margin: 10px;
+  font-size: 20px;
+}
+table, td{
+  border: 1px solid black;
+}
+
+.couponDiv {
+  display: flex;
+  position: relative;
+  left: 30%;
+}
+
+.tDiv {
+  position: relative;
+  left: 15%;
+}
