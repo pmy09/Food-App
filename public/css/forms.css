@@ -21,3 +21,9 @@
 .form-control textarea:focus {
   outline-color: #00695c;
 }
+
+.neouser {
+  width: 35%;
+  position: absolute;
+  left: 30%;
+}
