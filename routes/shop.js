@@ -29,4 +29,10 @@ router.get('/today', isAuth, shopController.getToday);
 
 router.get('/checkout', isAuth, shopController.getCheckout);
 
+router.get('/delorders/:orderId', isAuth, shopController.getDelOrders);
+
+router.get('/deliver/:orderId', isAuth, shopController.getCompleteOrders);
+
+router.get('/val', isAuth, shopController.getValidate)
+
 module.exports = router;
