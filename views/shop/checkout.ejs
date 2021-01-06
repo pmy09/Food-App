@@ -30,7 +30,7 @@
                        <div id="payment" class="payment">
                             <ul class="choice">
                                 <li>
-                                    <input id="payment_method_cod" type="radio" class="input-radio" name="payment_method" value="cod" checked="checked" data-order_button_text="">
+                                    <input id="payment_method_cod" type="radio" class="input-radio" name="payment_method" value="cod"  data-order_button_text="">
                                     <label for="payment_method_cod">Cash on delivery</label>
                                    <!-- <p>Pay with cash upon delivery.</p> -->
                                </li>
@@ -39,10 +39,16 @@
                                     <label for="payment_method_cod">Mobile Money<div class="momo"><img src="/images/atmoney.png"><img src="/images/momo.png"><img src="/images/vcash.png"></div></label>
                                 </li>
                                 <li>
-                                    <div class="coupon"><input id="payment_method_cod" type="radio" class="input-radio" name="payment_method" value="cod" data-order_button_text="">
-                                        Have a coupon? <input type="text" name="coupon" id="coupon">
-                                        <button type="#" class="#" name="#" value="#" disabled>Apply coupon</button>
-                                    </div>
+                                    <form action="/val" method="POST">
+                                        <div class="coupon">
+                                            <input id="#" type="radio" class="input-radio" data-order_button_text="">
+                                            Have a coupon? 
+                                            <input type="coupon" name="coupon" id="coupon" placeholder="coupon">
+                                            <!-- <button type="submit" class="coupon" name="coupon" value="coupon">Apply coupon</button> -->
+                                            <input type="submit" value="Validate" formaction="/val">
+                                        </div>
+                                    </form>
+                                    
                                 </li>
                            
                        </div>
