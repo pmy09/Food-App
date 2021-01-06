@@ -1,0 +1,96 @@
+<!-- <%- include('../includes/head.ejs') %>
+</head> -->
+<div class="backdrop"></div>
+<header class="main-header">
+    <button id="side-menu-toggle">Menu</button>
+    <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+            
+            <% if (isAuthenticated) { %>
+                
+                <li class="main-header__item">
+                    <a href="/manager"><i class="fa fa-fw fa-home"></i></a>
+                    <div class="dropdown">
+                        
+                        <button class="dropbtn">User Management</button>
+                        <div class="dropdown-content">
+                          <a href="/form">Add User</a>
+                          <a href="/crew">All Users</a>
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="main-header__item">
+                    <a href="/coupon">Coupons</a>
+                </li>
+
+                <li class="main-header__item">
+                    <a href="/chart">Orders</a>
+                </li>
+
+                <li class="main-header__item">
+                    <a href="/meals">Meals</a>
+                </li>
+            <% } %>
+        </ul>
+        <ul class="main-header__item-list">
+            <% if (!isAuthenticated) { %>
+                <li class="main-header__item">
+                    <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">Login</a>
+                </li>
+                <li class="main-header__item">
+                    <a class="<%= path === '/signup' ? 'active' : '' %>" href="/signup">Sign Up</a>
+                </li>
+            <% } else { %>
+                <li class="main-header__item">
+                    <form action="/logout" method="post">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button type="submit">Logout</button>
+                    </form>
+                </li>
+            <% } %>
+        </ul>
+    </nav>
+</header>
+
+<nav class="mobile-nav">
+    <ul class="mobile-nav__item-list">
+        
+        <% if (isAuthenticated) { %>
+            
+            <li class="main-header__item">
+                <div class="dropdown">
+                    <button class="dropbtn">User Management</button>
+                    <div class="dropdown-content">
+                        <a href="/form">Add User</a>
+                        <a href="/crew">All Users</a>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="main-header__item">
+                <a href="">Coupons</a>
+            </li>
+
+            <li class="main-header__item">
+                <a href="/chart">Orders</a>
+            </li>
+        <% } %>
+        <% if (!isAuthenticated) { %>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">Login</a>
+            </li>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/signup' ? 'active' : '' %>" href="/signup">Sign Up</a>
+            </li>
+        <% } else { %>
+            <li class="mobile-nav__item">
+                <form action="/logout" method="post">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+        <% } %>
+    </ul>
+</nav>
+<div class="space"></div>
