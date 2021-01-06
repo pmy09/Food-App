@@ -27,4 +27,14 @@ router.post('/delete-product', isAuth, adminController.postDeleteProduct);
 
 router.get('/users', adminController.getUsers);
 
+router.post('/coupon', adminController.postCoupon);
+
+router.get('/coupon', adminController.getCoupon);
+
+router.get("/deletecoupon/:couponId", adminController.getDelCoupon);
+
+router.post("/deletecoupon/:couponId", adminController.postDelCoupon);
+
+// router.get('/val', isAuth, adminController.getValidate)
+
 module.exports = router;
