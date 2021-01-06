@@ -29,20 +29,25 @@
                                 <% order.products.forEach(p => { %>
                                 <td><%= p.product.title %></td>
                                 <td><%= p.quantity %></td>
+                                <% if(order.delivered === false) { %>
                                 <td>
-                                    <div>
+                                    <form action="/deliver/<%= order._id %>">
                                         <input type="hidden" value="<%= p.product._id %>" name="productId">
                                         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                         <button class="btn" type="#">Complete Order</button>
-                                    </div>
+                                    </form>
                                 </td>
                                 <td>
-                                    <div>
+                                    <form action="/delorders/<%= order._id %>" method="GET">
                                         <input type="hidden" value="<%= p.product._id %>" name="productId">
                                         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                        <button class="btn" type="#">Delete Order</button>
-                                    </div>
+                                        <button class="btn" type="submit">Delete Order</button>
+                                    </form>
                                 </td>
+                                <% } else { %>
+                                    <td><p>Delivered</p></td>
+                                       
+                                        <% } %>
                                 <% }) %>
                             </tr>
                             <% }) %>
