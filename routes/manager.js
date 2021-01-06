@@ -30,4 +30,16 @@ router.get('/edit-user/:userId', isAuth, managerController.getEditUser);
 
 // router.post('/approve', managerController.postEditUser)
 
+router.post('/coupon', managerController.postCoupon);
+
+router.get('/coupon', managerController.getCoupon);
+
+router.get("/deletecoupon/:couponId", managerController.getDelCoupon);
+
+router.post("/deletecoupon/:couponId", managerController.postDelCoupon);
+
+router.get('/meals', isAuth, managerController.getMeals)
+
+// router.get('/val', isAuth, managerController.getValidate)
+
 module.exports = router;
