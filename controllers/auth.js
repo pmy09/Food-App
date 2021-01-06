@@ -63,7 +63,7 @@ exports.postLogin = (req, res, next) => {
               req.session.user = user;
               return req.session.save(err => {
                 console.log(err);
-                res.redirect('/admin/manager');
+                res.redirect('/manager');
               }
               )} else {
               req.session.isLoggedIn = true;
@@ -201,7 +201,7 @@ exports.postNewUser = (req, res, next) => {
           return user.save();
         })
         .then(result => {
-          res.redirect('/manager');
+          res.redirect('/crew');
         });
     })
     .catch(err => {
@@ -223,4 +223,34 @@ exports.postNewUser = (req, res, next) => {
 //   .catch(err => {
 //     console.log(err);
 //   });
+// };
+
+
+
+
+// exports.getValidate = (req, res, next) => {
+//   const coupon = req.body.coupon;
+//   console.log('HI')
+//   Coupon.findOne({ code: coupon})
+//   .then(coupon => {
+//     if (!coupon) {
+//       req.flash('error', 'Invalid coupon.');
+//       return res.redirect('/checkout');
+//   }
+//   bcrypt
+//         .compare(coupon, coupon.code)
+//         .then(doMatch => {
+//           if (doMatch) {
+//             req.flash('error', 'Coupon Validated.');
+//       return res.redirect('/');
+//             };
+//             req.flash('error', 'Invalid coupon.');
+//             return res.redirect('/checkout');
+//           })
+//         .catch(err => {
+//           console.log(err);
+//           res.redirect('/checkout');
+//         });
+//     })
+//     .catch(err => console.log(err));
 // };
