@@ -1,0 +1,48 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/manager.css">
+</head>
+
+<body>
+    <%- include('../admin/man1.ejs') %>
+    <main>
+        <div class="manprods">
+            <% if (prods.length > 0) { %>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            
+                            <th>Price</th>
+                            <th>Description</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (let product of prods) { %>
+                            <tr>
+                                <td><%= product.title %></td>
+                                
+                                <td>GHC <%= product.price %></td>
+                                <td><%= product.description %></td>
+                                
+                            </tr>
+                            <% } %>
+                    </tbody>
+                    
+                </table>
+                <% } else { %>
+                    <h1>No Products Found!</h1>
+                <% } %>
+                
+                
+        </div>
+        
+    </main>
+    <footer class="footer">
+        All rights reserved.
+    </footer>
+    <script src="/js/main.js"></script>
+    </body>
+    
+</html>
