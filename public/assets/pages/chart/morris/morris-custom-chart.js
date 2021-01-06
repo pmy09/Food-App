@@ -17,13 +17,13 @@ function lineChart() {
     window.lineChart = Morris.Line({
         element: 'line-example',
         data: [
-            { y: '2006', a: 100, b: 90 },
-            { y: '2007', a: 75, b: 65 },
-            { y: '2008', a: 50, b: 40 },
-            { y: '2009', a: 75, b: 65 },
-            { y: '2010', a: 50, b: 40 },
-            { y: '2011', a: 75, b: 65 },
-            { y: '2012', a: 100, b: 90 }
+            { y: '2014', a: 100, b: 90 },
+            { y: '2015', a: 75, b: 65 },
+            { y: '2016', a: 50, b: 40 },
+            { y: '2017', a: 75, b: 65 },
+            { y: '2018', a: 50, b: 40 },
+            { y: '2019', a: 75, b: 65 },
+            { y: '2020', a: 100, b: 90 }
         ],
         xkey: 'y',
         redraw: true,
@@ -39,13 +39,13 @@ function areaChart() {
     window.areaChart = Morris.Area({
         element: 'area-example',
         data: [
-            { y: '2006', a: 100, b: 90 },
-            { y: '2007', a: 75, b: 65 },
-            { y: '2008', a: 50, b: 40 },
-            { y: '2009', a: 75, b: 65 },
-            { y: '2010', a: 50, b: 40 },
-            { y: '2011', a: 75, b: 65 },
-            { y: '2012', a: 100, b: 90 }
+            { y: '2014', a: 100, b: 90 },
+            { y: '2015', a: 75, b: 65 },
+            { y: '2016', a: 50, b: 40 },
+            { y: '2017', a: 75, b: 65 },
+            { y: '2018', a: 50, b: 40 },
+            { y: '2019', a: 75, b: 65 },
+            { y: '2020', a: 100, b: 90 }
         ],
         xkey: 'y',
         resize: true,
@@ -74,37 +74,37 @@ function donutChart() {
 Morris.Bar({
     element: 'morris-bar-chart',
     data: [{
-        y: '2006',
+        y: '2014',
         a: 100,
         b: 90,
         c: 60
     }, {
-        y: '2007',
+        y: '2015',
         a: 75,
         b: 65,
         c: 40
     }, {
-        y: '2008',
+        y: '2016',
         a: 50,
         b: 40,
         c: 30
     }, {
-        y: '2009',
+        y: '2017',
         a: 75,
         b: 65,
         c: 40
     }, {
-        y: '2010',
+        y: '2018',
         a: 50,
         b: 40,
         c: 30
     }, {
-        y: '2011',
+        y: '2019',
         a: 75,
         b: 65,
         c: 40
     }, {
-        y: '2012',
+        y: '2020',
         a: 100,
         b: 90,
         c: 40
@@ -121,37 +121,37 @@ Morris.Bar({
 Morris.Area({
     element: 'morris-extra-area',
     data: [{
-            period: '2010',
+            period: '2014',
             iphone: 0,
             ipad: 0,
             itouch: 0
         }, {
-            period: '2011',
+            period: '2015',
             iphone: 50,
             ipad: 15,
             itouch: 5
         }, {
-            period: '2012',
+            period: '2016',
             iphone: 20,
             ipad: 50,
             itouch: 65
         }, {
-            period: '2013',
+            period: '2017',
             iphone: 60,
             ipad: 12,
             itouch: 7
         }, {
-            period: '2014',
+            period: '2018',
             iphone: 30,
             ipad: 20,
             itouch: 120
         }, {
-            period: '2015',
+            period: '2019',
             iphone: 25,
             ipad: 80,
             itouch: 40
         }, {
-            period: '2016',
+            period: '2020',
             iphone: 10,
             ipad: 10,
             itouch: 10
@@ -178,37 +178,37 @@ Morris.Area({
 Morris.Area({
     element: 'morris-site-visit',
     data: [{
-        period: '2010',
+        period: '2014',
         SiteA: 0,
         SiteB: 0,
 
     }, {
-        period: '2011',
+        period: '2015',
         SiteA: 130,
         SiteB: 100,
 
     }, {
-        period: '2012',
+        period: '2016',
         SiteA: 80,
         SiteB: 60,
 
     }, {
-        period: '2013',
+        period: '2017',
         SiteA: 70,
         SiteB: 200,
 
     }, {
-        period: '2014',
+        period: '2018',
         SiteA: 180,
         SiteB: 150,
 
     }, {
-        period: '2015',
+        period: '2019',
         SiteA: 105,
         SiteB: 90,
 
     }, {
-        period: '2016',
+        period: '2020',
         SiteA: 250,
         SiteB: 150,
 
