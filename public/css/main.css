@@ -63,7 +63,7 @@ form {
 .main-header {
   width: 100%;
   height: 3.5rem;
-  background-color: white;
+  background-color: #203040;
   /* background-image: url("../images/amal.jpg"); */
   background-size: 20vh;
   padding: 0 1.5rem;
@@ -100,7 +100,7 @@ form {
   background: transparent;
   border: none;
   text-decoration: none;
-  color: red;
+  color: white;
   cursor: pointer;
   font-size: xx-large;
 }
@@ -110,7 +110,7 @@ form {
 .main-header__item a.active,
 .main-header__item button:hover,
 .main-header__item button:active {
-  color: #390788;
+  color: yellow;
 }
 
 .mobile-nav {
@@ -328,6 +328,19 @@ form {
   height: 50px;
 }
 
+.footer2 {
+  grid-area: footer;
+  background-color: #203040;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+  height: 50px;
+}
+
 @media (max-width: 768px) {
   .footer,
   .footer1 {
@@ -342,7 +355,7 @@ form {
 /* Style The Dropdown Button */
 .dropbtn {
   background-color: transparent;
-  color: red;
+  color: white;
   /* padding: 16px; */
   font-size: xx-large;
   border: none;
