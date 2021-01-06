@@ -2,7 +2,7 @@
     display: flexbox;
     justify-content: center;
     position: absolute;
-    left: 30%;
+    left: 9%;
 }
 
 .product-form {
@@ -90,4 +90,14 @@ span {
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s
+  }
+
+  tr, td {
+    padding: 10px 30px;
+    text-align: center;
+    margin: 10px;
+    font-size: 20px;
+  }
+  table, td{
+    border: 1px solid black;
   }
