@@ -1,0 +1,60 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/orders.css">
+</head>
+
+<body>
+    <%- include('../admin/man1.ejs') %>
+    <main>
+        <div class="mainCoupon">
+            <div class="couponDiv">
+     
+                <form action="/coupon" method="POST" class="cForm">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <h1 style="text-align: center;">Coupon</h1>
+                    <label for="">Coupon Code: </label> 
+                    <input type="text" name="code"> 
+                    <button type="submit" class="btn">Add Coupon</button>
+                </form>
+            </div>
+            <hr>
+            <br>
+            <div class="tDiv">
+                <% if (coupon.length > 0) { %>
+                
+                    <table>
+                        <tr>
+            
+                            <th>Coupon Code</th>
+                            <th>Date</th>
+            
+                        </tr>
+                        <% for (var voucher = 0; voucher < coupon.length; voucher++) { %>
+            
+                            <tr>
+                
+                                <td><%= coupon[voucher].code %></td>
+                                <td><%= coupon[voucher].date %> </td>
+                                <td>
+                                    <form action="/deletecoupon/<%= coupon[voucher]._id %> " method="GET">
+                                        <button id="<%= coupon._id %>" type="submit" class="btn">Remove</button>
+                                    </form>
+                                </td>  
+                            </tr>
+                        <% } %> 
+                        
+                    </table>
+                    
+                <% } %> 
+            
+            
+        </div>
+    
+        </div>
+    </main>
+    <footer class="footer1">
+        All rights reserved.
+    </footer>
+    <script src="/js/main.js"></script>
+    </body>
+    
+</html>
