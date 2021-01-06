@@ -1,0 +1,45 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/orders.css">
+</head>
+
+<body>
+    <%- include('../admin/man1.ejs') %>
+    <main>
+        <% if (orders.length <= 0) { %>
+            <h1>Nothing there!</h1>
+        <% } else { %>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Date</th>
+                        <th>Order ID</th>
+                        <th>Meal</th>
+                        <th>Quantity</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <% orders.forEach(order => { %>
+                        <tr>
+                            <td><%= order.user.username %></td>
+                            <td><%= order.date %></td>
+                            <td># <%= order._id %></td>
+                            <% order.products.forEach(p => { %>
+                            <td><%= p.product.title %></td>
+                            <td><%= p.quantity %></td>
+                            
+                            <% }) %>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+            <% } %>
+    </main>
+    <footer class="footer1">
+        All rights reserved.
+    </footer>
+    <script src="/js/main.js"></script>
+    </body>
+    
+</html>
